@@ -1,0 +1,9 @@
+{
+  "title": "키·몸무게",
+  "keywords": ["키몸무게", "height", "weight"],
+  "unit_word": "명",
+  "columns": {
+    "키 (cm)": ["키", "신장", "height"],
+    "몸무게 (kg)": ["몸무게", "체중", "weight"]
+  }
+}
