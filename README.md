@@ -13,7 +13,21 @@
 > 이 프로그램은 질문 문장에서 열 이름과 숫자를 찾는 **규칙 기반** 방식으로 말을 이해하고,
 > 답은 학습된 회귀·신경망 모델이 계산합니다. 불러온 데이터에 관한 질문에만 답합니다.
 
-## 실행
+## 웹 챗봇
+
+### 💬 [챗봇 열기 → baekjiwoong5.github.io/LLM](https://baekjiwoong5.github.io/LLM/)
+
+설치 없이 브라우저에서 바로 질문할 수 있습니다. `index.html` 안에 학습된 계수와 신경망 가중치가 들어 있어 서버나 인터넷 연결 없이 답하며, 내려받은 `index.html`을 더블클릭해도 동작합니다. 답은 파이썬 버전과 같습니다.
+
+처음 한 번 GitHub Pages를 켜야 위 주소가 열립니다.
+
+1. 저장소 **Settings → Pages**로 이동
+2. Source: **Deploy from a branch**, Branch: **main**, 폴더: **/ (root)** 선택 후 **Save**
+3. 1~2분 뒤 https://baekjiwoong5.github.io/LLM/ 에서 열립니다
+
+웹 챗봇은 미리 학습해 둔 두 데이터에만 답합니다. `data/` 폴더의 데이터를 바꾸거나 추가했다면 `python export_web.py`를 실행해 `index.html`을 갱신하세요. 다른 표 데이터로 바로 대화하려면 아래 파이썬 버전을 쓰면 됩니다.
+
+## 파이썬으로 실행
 
 ```bash
 git clone https://github.com/baekjiwoong5/LLM.git
@@ -130,6 +144,8 @@ python chat.py --data 내자료.csv --target 예측할열이름
 ## 폴더 구조
 
 ```
+├── index.html           # 웹 챗봇 (GitHub Pages 첫 화면, 학습 결과 내장)
+├── export_web.py        # 학습 결과를 index.html에 넣는 스크립트
 ├── chat.py              # 질문 이해(규칙 기반) · 답변 · 실행
 ├── models.py            # 선형 · 비선형 · 인공신경망과 fit_all()
 ├── data/
