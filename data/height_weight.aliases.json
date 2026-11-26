@@ -30,7 +30,8 @@
         "how tall"
       ],
       "unit": "cm",
-      "role": "height"
+      "role": "height",
+      "desc": "사람의 키(cm). -1 저장소 데이터, 148~197cm."
     },
     "몸무게 (kg)": {
       "names": [
@@ -53,7 +54,10 @@
         "how heavy"
       ],
       "unit": "kg",
-      "role": "weight"
+      "role": "weight",
+      "desc": "사람의 몸무게(kg). -1 저장소 데이터, 키로 예측하는 기본 목표."
     }
-  }
+  },
+  "home": "regression",
+  "source": "-1 저장소 (선형·비선형 회귀분석, 199명)"
 }

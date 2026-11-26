@@ -2196,7 +2196,7 @@
  },
  {
   "q": "인공신경망 구조 설명",
-  "intent": "equation",
+  "intent": "explain",
   "models": [
    "인공신경망"
   ],
@@ -2359,5 +2359,348 @@
  {
   "q": "2번",
   "intent": "compare"
+ },
+ {
+  "q": "인공신경망 그래프 보여줘",
+  "fresh": true,
+  "intent": "chart",
+  "dataset": "당뇨병 진행도",
+  "target": "progression",
+  "kinds": [
+   "learning",
+   "actual"
+  ]
+ },
+ {
+  "q": "신경망 학습 곡선 보여줘",
+  "fresh": true,
+  "intent": "chart",
+  "dataset": "당뇨병 진행도",
+  "kinds": [
+   "learning"
+  ]
+ },
+ {
+  "q": "선형회귀 그래프 보여줘",
+  "fresh": true,
+  "intent": "chart",
+  "dataset": "키·몸무게",
+  "target": "몸무게 (kg)",
+  "kinds": [
+   "fit"
+  ],
+  "x": "키 (cm)",
+  "models": [
+   "선형회귀"
+  ]
+ },
+ {
+  "q": "그럼 잔차는?",
+  "intent": "chart",
+  "dataset": "키·몸무게",
+  "kinds": [
+   "residual"
+  ],
+  "models": [
+   "선형회귀"
+  ]
+ },
+ {
+  "q": "신경망으로는?",
+  "intent": "chart",
+  "dataset": "키·몸무게",
+  "kinds": [
+   "residual"
+  ],
+  "models": [
+   "인공신경망"
+  ]
+ },
+ {
+  "q": "비선형 회귀 그래프 그려줘",
+  "fresh": true,
+  "intent": "chart",
+  "dataset": "키·몸무게",
+  "kinds": [
+   "fit"
+  ],
+  "models": [
+   "비선형(2차 다항)",
+   "비선형(거듭제곱)",
+   "비선형(지수)"
+  ]
+ },
+ {
+  "q": "키 175일 때 몸무게 그래프로 보여줘",
+  "fresh": true,
+  "intent": "chart",
+  "dataset": "키·몸무게",
+  "kinds": [
+   "fit"
+  ],
+  "values": {
+   "키 (cm)": 175
+  }
+ },
+ {
+  "q": "키 160~190 그래프",
+  "fresh": true,
+  "intent": "chart",
+  "dataset": "키·몸무게",
+  "kinds": [
+   "fit"
+  ],
+  "x": "키 (cm)"
+ },
+ {
+  "q": "당뇨 BMI에 따른 진행도 그래프",
+  "fresh": true,
+  "intent": "chart",
+  "dataset": "당뇨병 진행도",
+  "target": "progression",
+  "kinds": [
+   "fit"
+  ],
+  "x": "bmi"
+ },
+ {
+  "q": "bmi 그래프",
+  "fresh": true,
+  "intent": "chart",
+  "dataset": "당뇨병 진행도",
+  "target": "progression",
+  "kinds": [
+   "fit"
+  ],
+  "x": "bmi"
+ },
+ {
+  "q": "진행도에 영향 큰 거 차트로",
+  "fresh": true,
+  "intent": "chart",
+  "dataset": "당뇨병 진행도",
+  "kinds": [
+   "importance"
+  ]
+ },
+ {
+  "q": "신경망 구조 그림 보여줘",
+  "fresh": true,
+  "intent": "chart",
+  "dataset": "당뇨병 진행도",
+  "kinds": [
+   "network"
+  ]
+ },
+ {
+  "q": "BMI 30 혈당 100이면 신경망 구조 그림",
+  "fresh": true,
+  "intent": "chart",
+  "dataset": "당뇨병 진행도",
+  "kinds": [
+   "network"
+  ],
+  "values": {
+   "bmi": 30,
+   "s6": 100
+  }
+ },
+ {
+  "q": "실제값이랑 예측값 비교 그래프",
+  "fresh": true,
+  "intent": "chart",
+  "kinds": [
+   "actual"
+  ]
+ },
+ {
+  "q": "당뇨 데이터 잔차 플롯",
+  "fresh": true,
+  "intent": "chart",
+  "dataset": "당뇨병 진행도",
+  "kinds": [
+   "residual"
+  ]
+ },
+ {
+  "q": "loss curve 보여줘",
+  "fresh": true,
+  "intent": "chart",
+  "dataset": "당뇨병 진행도",
+  "kinds": [
+   "learning"
+  ]
+ },
+ {
+  "q": "키랑 몸무게 산점도",
+  "fresh": true,
+  "intent": "chart",
+  "dataset": "키·몸무게",
+  "kinds": [
+   "fit"
+  ],
+  "x": "키 (cm)"
+ },
+ {
+  "q": "선형회귀가 뭐야?",
+  "fresh": true,
+  "intent": "explain",
+  "topic": "linear",
+  "dataset": "키·몸무게"
+ },
+ {
+  "q": "최소제곱법 설명해줘",
+  "fresh": true,
+  "intent": "explain",
+  "topic": "least_squares"
+ },
+ {
+  "q": "경사하강법은 어떻게 작동해?",
+  "fresh": true,
+  "intent": "explain",
+  "topic": "gradient_descent"
+ },
+ {
+  "q": "2차 다항회귀란?",
+  "fresh": true,
+  "intent": "explain",
+  "topic": "poly2"
+ },
+ {
+  "q": "비선형회귀는 왜 반복 계산해?",
+  "fresh": true,
+  "intent": "explain",
+  "topic": "nonlinear",
+  "dataset": "키·몸무게"
+ },
+ {
+  "q": "역전파 설명해줘",
+  "fresh": true,
+  "intent": "explain",
+  "topic": "backprop"
+ },
+ {
+  "q": "Adam이 뭐야",
+  "fresh": true,
+  "intent": "explain",
+  "topic": "adam"
+ },
+ {
+  "q": "왜 13 에폭에서 멈췄어?",
+  "fresh": true,
+  "intent": "explain",
+  "topic": "early_stop",
+  "dataset": "당뇨병 진행도"
+ },
+ {
+  "q": "과적합",
+  "fresh": true,
+  "intent": "explain",
+  "topic": "overfit"
+ },
+ {
+  "q": "R²가 뭐야?",
+  "fresh": true,
+  "intent": "explain",
+  "topic": "metrics"
+ },
+ {
+  "q": "선형회귀랑 신경망 차이가 뭐야",
+  "fresh": true,
+  "intent": "explain",
+  "topic": "overview"
+ },
+ {
+  "q": "S5가 뭐야?",
+  "fresh": true,
+  "intent": "explain",
+  "dataset": "당뇨병 진행도",
+  "columns": [
+   "s5"
+  ]
+ },
+ {
+  "q": "표준화는 왜 해?",
+  "fresh": true,
+  "intent": "explain",
+  "topic": "standardize"
+ },
+ {
+  "q": "원래 결과 알려줘",
+  "fresh": true,
+  "intent": "explain",
+  "topic": "original"
+ },
+ {
+  "q": "데이터 분할은 어떻게 했어?",
+  "fresh": true,
+  "intent": "explain",
+  "topic": "split"
+ },
+ {
+  "q": "선형회귀 식 알려줘",
+  "fresh": true,
+  "intent": "equation"
+ },
+ {
+  "q": "인공신경망 예측해줘",
+  "fresh": true,
+  "intent": "need_input"
+ },
+ {
+  "q": "키 평균이 뭐야",
+  "fresh": true,
+  "intent": "stats"
+ },
+ {
+  "q": "신경망 구조 보여줘",
+  "fresh": true,
+  "intent": "chart",
+  "dataset": "당뇨병 진행도",
+  "kinds": [
+   "network"
+  ]
+ },
+ {
+  "q": "거듭제곱 회귀선 보여줘",
+  "fresh": true,
+  "intent": "chart",
+  "dataset": "키·몸무게",
+  "kinds": [
+   "fit"
+  ],
+  "models": [
+   "비선형(거듭제곱)"
+  ]
+ },
+ {
+  "q": "가중치 그림 보여줘",
+  "fresh": true,
+  "intent": "chart",
+  "dataset": "당뇨병 진행도",
+  "kinds": [
+   "network"
+  ]
+ },
+ {
+  "q": "에폭별 손실 그래프",
+  "fresh": true,
+  "intent": "chart",
+  "dataset": "당뇨병 진행도",
+  "kinds": [
+   "learning"
+  ]
+ },
+ {
+  "q": "ReLU가 뭐야",
+  "fresh": true,
+  "intent": "explain",
+  "topic": "relu"
+ },
+ {
+  "q": "결정계수 의미",
+  "fresh": true,
+  "intent": "explain",
+  "topic": "metrics"
  }
 ]

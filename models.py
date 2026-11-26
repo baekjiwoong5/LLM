@@ -226,6 +226,7 @@ class MLPModel:
 
         best, best_params, wait = np.inf, None, 0
         self.best_epoch = self.epochs = 0
+        self.history = {"train": [], "val": []}           # 학습 곡선 (표준화된 MSE)
         for epoch in range(1, EPOCHS + 1):
             idx = self.rng.permutation(len(Xtr))
             for s in range(0, len(idx), BATCH):
@@ -233,6 +234,8 @@ class MLPModel:
                 self._forward(Xtr[bi])
                 self._step(*self._backward(ytr[bi]))
             val = float(np.mean((self._forward(Xva) - yva) ** 2))
+            self.history["train"].append(float(np.mean((self._forward(Xtr) - ytr) ** 2)))
+            self.history["val"].append(val)
             self.epochs = epoch
             if val < best:
                 best, wait, self.best_epoch = val, 0, epoch
@@ -255,7 +258,7 @@ class MLPModel:
 
 
 # ── 전체 학습 ─────────────────────────────────────────
-def fit_all(X, y, seed=SEED):
+def fit_all(X, y, seed=SEED, detail=None):
     """선형·비선형·인공신경망을 한 번에 학습하고 같은 테스트 데이터로 평가한다.
 
     반환: (models, metrics, skipped, sizes)
@@ -266,6 +269,8 @@ def fit_all(X, y, seed=SEED):
     """
     tr, va, te = split_indices(len(X), seed)
     models, metrics, skipped = {}, {}, {}
+    if detail is not None:                                # 그래프용: 테스트 데이터의 실제값과 모델별 예측
+        detail.update(test_y=[float(v) for v in y[te]], test_pred={})
     for cls in (LinearModel, Poly2Model, PowerModel, ExpModel, MLPModel):
         try:
             with warnings.catch_warnings(), np.errstate(all="ignore"):
@@ -281,6 +286,8 @@ def fit_all(X, y, seed=SEED):
             skipped[cls.name] = str(e)
             continue
         models[cls.name] = m
+        if detail is not None:
+            detail["test_pred"][cls.name] = [float(v) for v in pt]
         metrics[cls.name] = {"val_rmse": rmse(y[va], pv), "mae": mae(y[te], pt),
                              "rmse": rmse(y[te], pt), "r2": r2_score(y[te], pt)}
     base = np.full(len(te), y[tr].mean())

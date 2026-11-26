@@ -50,6 +50,12 @@ def problems(plan, exp):
             or (not isinstance(d, str) and close(ef.get("delta", 0), d)))
         if not ok:
             out.append(f"effect: {ef} (기대 {exp['effect']})")
+    if "kinds" in exp and (plan.get("chart") or {}).get("kinds") != exp["kinds"]:
+        out.append(f"kinds: {(plan.get('chart') or {}).get('kinds')} (기대 {exp['kinds']})")
+    if "x" in exp and (plan.get("chart") or {}).get("x") != exp["x"]:
+        out.append(f"x: {(plan.get('chart') or {}).get('x')} (기대 {exp['x']})")
+    if "topic" in exp and plan.get("topic") != exp["topic"]:
+        out.append(f"topic: {plan.get('topic')!r} (기대 {exp['topic']!r})")
     for key in ("models", "columns"):
         if key in exp and sorted(plan.get(key, [])) != sorted(exp[key]):
             out.append(f"{key}: {plan.get(key)} (기대 {exp[key]})")
@@ -119,6 +125,9 @@ def main():
             pa, ja = p["plan"], j["plan"] or {}
             keys = sorted(k for k in set(pa) | set(ja) if not same(pa.get(k), ja.get(k)))
             diff.append("계획: " + "; ".join(f"{k} 파이썬={pa.get(k)!r} 웹={ja.get(k)!r}" for k in keys))
+        if p["plan"]["intent"] == "chart":               # 그래프: 그림 눈금은 빼고 요약 글의 숫자만 비교
+            p = dict(p, text=re.sub(r"그림 파일: .*", "", p["text"]))
+            j = dict(j, html=j["html"].rsplit("</figure></div>", 1)[-1])
         a, b = numbers(p["text"]), numbers(j["html"])
         if a != b:
             diff.append(f"숫자: 파이썬에만 {sorted(set(a) - set(b))[:8]}, 웹에만 {sorted(set(b) - set(a))[:8]}")

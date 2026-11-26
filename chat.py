@@ -21,7 +21,8 @@ import numpy as np
 import pandas as pd
 
 from models import fit_all
-from nlu import NLU, UNIT_OF, bmi_class, fixed, fmt, nice2, resolve, round_sig, understand
+from charts import CHART_DIR, KIND_TITLE, chart_data, draw_png, summary
+from nlu import KNOW, NLU, UNIT_OF, bmi_class, fixed, fmt, nice2, resolve, round_sig, understand
 
 ROOT = Path(__file__).resolve().parent
 DATA_DIR = ROOT / "data"
@@ -141,6 +142,7 @@ class Dataset:
 
         # 열 이름 "키 (cm)" → 이름 "키", 단위 "cm" / 별명·물음 표현·역할은 aliases.json
         self.label, self.unit, aliases, asks, match_unit, self.roles = {}, {}, [], [], {}, {}
+        self.desc = {}
         colcfg = cfg.get("columns", {})
         for c in self.columns:
             m = re.match(r"^(.*?)\s*\(([^)]*)\)\s*$", c)
@@ -154,6 +156,8 @@ class Dataset:
             match_unit[c] = UNIT_OF.get(self.unit[c].lower(), self.unit[c].lower()) or None
             if entry.get("role"):
                 self.roles[entry["role"]] = c
+            if entry.get("desc"):
+                self.desc[c] = entry["desc"]
             for a in {c, label, *names}:
                 aliases.append((a.lower(), c))
             for a in entry.get("ask", []):
@@ -178,7 +182,8 @@ class Dataset:
         self.spec = {"title": self.title, "keywords": self.keywords, "columns": self.columns,
                      "target": self.target, "label": self.label, "unit": self.unit,
                      "match_unit": match_unit, "aliases": aliases, "asks": asks,
-                     "stats": self.stats, "fill": self.fill, "roles": self.roles, "binary": self.binary}
+                     "stats": self.stats, "fill": self.fill, "roles": self.roles, "binary": self.binary,
+                     "home": cfg.get("home"), "source": cfg.get("source"), "desc": self.desc}
         self._bundles = {}
         self.bundle(self.target)
 
@@ -211,10 +216,13 @@ class Dataset:
         """target 열을 맞히는 다섯 모델 (처음 물을 때 한 번만 학습)"""
         if target not in self._bundles:
             feats = [c for c in self.columns if c != target]
-            models, metrics, skipped, sizes = fit_all(self.df[feats].to_numpy(), self.df[target].to_numpy())
+            detail = {}
+            models, metrics, skipped, sizes = fit_all(self.df[feats].to_numpy(), self.df[target].to_numpy(),
+                                                      detail=detail)
             best = min(models, key=lambda k: metrics[k]["val_rmse"])
             self._bundles[target] = {"features": feats, "models": models, "metrics": metrics,
-                                     "skipped": skipped, "sizes": sizes, "best": best}
+                                     "skipped": skipped, "sizes": sizes, "best": best,
+                                     "test_y": detail["test_y"], "test_pred": detail["test_pred"]}
         return self._bundles[target]
 
     def complete(self, values, features):
@@ -447,8 +455,8 @@ class Brain:
                          + " 값과 함께 움직여서 두 계산이 크게 다를 수 있습니다. 현실에 가까운 쪽은 '함께 움직이는 값 반영'입니다.")
         return "\n".join(lines + self._footer(ds, t, {k: v for k, v in given.items() if k != c}, plan))
 
-    def do_importance(self, ds, plan):
-        t = plan["target"]
+    def importance_rows(self, ds, t, plan):
+        """열마다 표준편차만큼 높였을 때 예측 변화 (함께 움직이는 열도 같이 바꿈), 큰 순서"""
         b = ds.bundle(t)
         feats = b["features"]
         rep = self.rep(b, plan)
@@ -461,6 +469,12 @@ class Brain:
             rows.append((c, d, p1[rep] - p0[rep],
                          p1["선형회귀"] - p0["선형회귀"] if "선형회귀" in p1 else float("nan"), ds.corr[c][t]))
         rows.sort(key=lambda r: -abs(r[2]) if np.isfinite(r[2]) else 0)
+        return rows, rep
+
+    def do_importance(self, ds, plan):
+        t = plan["target"]
+        feats = ds.bundle(t)["features"]
+        rows, rep = self.importance_rows(ds, t, plan)
         lines = [f"[{ds.title}] {ds.label[t]}에 대한 영향: 각 열이 표준편차만큼 높은 경우",
                  f"  {'열':<14}{'높인 양':>10}{'대표 모델':>12}{'선형회귀':>12}{'상관계수':>10}"]
         for c, d, r_, lin, r in rows:
@@ -554,6 +568,61 @@ class Brain:
                 lines.append(f"  {name}: {m.equation(names)}")
         return "\n".join(lines)
 
+    # ── 그래프 ──
+    def do_chart(self, ds, plan):
+        ch = plan["chart"]
+        t = ch["target"]
+        titles = ", ".join(KIND_TITLE[k] for k in ch["kinds"])
+        datas = [(k, chart_data(ds, plan, k, self.importance_rows)) for k in ch["kinds"]]
+        lines = [f"[{ds.title}] {ds.label[t]} 예측 그래프: {titles}"]
+        lines += [summary(ds, plan, k, d) for k, d in datas]
+        name = re.sub(r"[^0-9A-Za-z가-힣]+", "_", f"{ds.title}_{ds.label[t]}_{'-'.join(ch['kinds'])}").strip("_")
+        try:
+            path = draw_png(ds, plan, datas, CHART_DIR / f"{name}.png")
+        except ImportError:
+            path = None
+            lines.append("(그림 파일을 만들려면 matplotlib가 필요합니다: pip install matplotlib)")
+        if path:
+            lines.append(f"그림 파일: {Path(path).relative_to(ROOT)}")
+        return "\n".join(lines)
+
+    # ── 설명 ──
+    def do_explain(self, ds, plan):
+        if plan["topic"] is None:
+            lines = [f"[{ds.title}] 열 설명" + (f" (출처: {ds.spec['source']})" if ds.spec.get("source") else "")]
+            for c in dict.fromkeys(plan["columns"]):
+                s = ds.stats[c]
+                rng = f"데이터 범위 {g(s['min'])}~{g(s['max'])}{ds.unit[c]}, 평균 {g(s['mean'])}{ds.unit[c]}"
+                name = ds.label[c] + (f"({c})" if ds.label[c] != c and ds.label[c] not in c else "")
+                lines.append(f"  {name}: {ds.desc.get(c, '설명 자료가 없는 열입니다.')} {rng}.")
+            return "\n".join(lines)
+        tp = next(x for x in KNOW["topics"] if x["id"] == plan["topic"])
+        lines = [f"{tp['title']}"] + [f"  · {b}" for b in tp["body"]]
+        live = self._live(ds, tp)
+        if live:
+            lines.append(live)
+        lines.append(f"출처: {tp['source']}")
+        if tp.get("charts"):
+            lines.append("그래프로 보기: " + " / ".join(f"'{c}'" for c in tp["charts"]))
+        return "\n".join(lines)
+
+    def _live(self, ds, tp):
+        """설명에 붙이는 지금 학습한 모델의 숫자"""
+        b = ds.bundle(ds.target)
+        if tp.get("live") == "eq":
+            names = [ds.label[c] for c in b["features"]]
+            rows = [f"    {n}: {b['models'][n].equation(names)} (테스트 R² {fixed(b['metrics'][n]['r2'], 3)})"
+                    for n in tp.get("models", []) if n in b["models"]]
+            return (f"  지금 회귀챗이 {ds.title} 데이터로 학습한 식 (y = {ds.label[ds.target]}):\n" + "\n".join(rows)) if rows else ""
+        if tp.get("live") == "ann" and "인공신경망" in b["models"]:
+            m, k = b["models"]["인공신경망"], b["metrics"]["인공신경망"]
+            return (f"  지금 회귀챗의 {ds.title} 인공신경망: {m.equation([])}, "
+                    f"테스트 R² {fixed(k['r2'], 3)}, RMSE {fixed(k['rmse'], 2)}")
+        if tp.get("live") == "split":
+            tr, va, te = b["sizes"]
+            return f"  지금 {ds.title} 데이터 {len(ds.df)}{ds.unit_word}: 학습 {tr} / 검증 {va} / 테스트 {te}"
+        return ""
+
     def do_stats(self, ds, plan):
         cols = list(dict.fromkeys(plan["columns"])) or ds.columns
         lines = [f"[{ds.title}] {len(ds.df)}{ds.unit_word}"]
@@ -636,7 +705,9 @@ class Brain:
         return ("이렇게 물어보세요. 말투는 자유롭게 바꿔도 됩니다.\n"
                 + "\n".join("  " + e for e in examples(self.datasets))
                 + "\n단위(1.75m, 70kg, 150파운드), 한글 숫자(백칠십오), 여러 값(160, 170, 180 / 160~180), "
-                "변화량(10cm 크면), 반대 방향(몸무게로 키), 이어지는 질문(그럼 180은?)도 알아듣습니다."
+                "변화량(10cm 크면), 반대 방향(몸무게로 키), 이어지는 질문(그럼 180은?)도 알아듣습니다.\n"
+                "그래프(학습 곡선, 실제값 vs 예측값, 잔차, 회귀곡선, 신경망 구조, 영향)와 "
+                "개념 설명(최소제곱법, 경사하강법, 역전파, Adam, 과적합, R² …)도 물어보세요."
                 + "\n  /load 파일.csv [목표열]   (다른 표 데이터 불러오기)   /  종료")
 
 
@@ -661,6 +732,8 @@ def examples(datasets):
     if any(d.bmi_dist for d in datasets):
         out.append("비만이야?")
     out += ["어떤 모델이 제일 정확해?", "회귀식 알려줘", "평균이랑 범위 알려줘", "어떤 데이터가 있어?"]
+    if any(d.spec.get("home") for d in datasets):        # -1·-2 저장소 자료: 그래프와 설명
+        out += ["인공신경망 그래프 보여줘", "선형회귀 그래프 보여줘", "선형회귀가 뭐야?", "역전파 설명해줘"]
     return out
 
 

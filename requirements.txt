@@ -2,3 +2,4 @@ numpy>=1.24
 pandas>=2.0
 scipy>=1.10
 openpyxl>=3.1
+matplotlib>=3.7   # 그래프 그림 파일 (없으면 글 요약만)

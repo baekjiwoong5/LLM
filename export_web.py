@@ -15,7 +15,7 @@ from pathlib import Path
 import numpy as np
 
 from chat import Dataset, default_paths
-from nlu import NLU
+from nlu import KNOW, NLU
 
 ROOT = Path(__file__).resolve().parent
 HTML_PATH = ROOT / "index.html"
@@ -38,7 +38,9 @@ def export_model(name, m, names):
         out.update(a=m.a, b=_list(m.b))
     else:
         out.update(W=[_list(w, 8) for w in m.W], B=[_list(b.ravel(), 8) for b in m.B],
-                   xm=_list(m.xm), xs=_list(m.xs), ym=m.ym, ys=m.ys)
+                   xm=_list(m.xm), xs=_list(m.xs), ym=m.ym, ys=m.ys,
+                   history={"train": _list(m.history["train"], 6), "val": _list(m.history["val"], 6)},
+                   epochs=m.epochs, bestEpoch=m.best_epoch)
     return out
 
 
@@ -50,10 +52,11 @@ def export_dataset(ds):
         bundles[t] = {"features": b["features"],
                       "models": [export_model(n, m, names) for n, m in b["models"].items()],
                       "metrics": b["metrics"], "metricOrder": list(b["metrics"]), "best": b["best"],
-                      "sizes": list(b["sizes"]), "skipped": b["skipped"]}
+                      "sizes": list(b["sizes"]), "skipped": b["skipped"],
+                      "testY": b["test_y"], "testPred": b["test_pred"]}
     return {"spec": ds.spec, "file": ds.path.name, "n": len(ds.df), "unitWord": ds.unit_word,
             "dropped": ds.dropped, "nMissing": ds.n_missing, "corr": ds.corr, "cov": ds.cov,
-            "bmiDist": ds.bmi_dist, "bundles": bundles}
+            "bmiDist": ds.bmi_dist, "bundles": bundles, "rows": ds.df.to_numpy().tolist()}
 
 
 def _js(obj):
@@ -76,7 +79,9 @@ def main():
         print(f"  {ds.title}: 열 {len(ds.columns)}개 × 모델 5종 학습")
     html = HTML_PATH.read_text(encoding="utf-8")
     html = _put(html, "DATA", _js(data))
-    html = _put(html, "NLU", _js({k: v for k, v in NLU.items() if not k.startswith("_")}))
+    nlu = {k: v for k, v in NLU.items() if not k.startswith("_")}
+    nlu["knowledge"] = {k: v for k, v in KNOW.items() if not k.startswith("_")}
+    html = _put(html, "NLU", _js(nlu))
     HTML_PATH.write_text(html, encoding="utf-8")
     print(f"index.html 갱신 ({len(html) / 1024:.0f} KB)")
 

@@ -25,6 +25,8 @@ from decimal import ROUND_HALF_UP, Decimal
 from pathlib import Path
 
 NLU = json.loads((Path(__file__).resolve().parent / "nlu.json").read_text(encoding="utf-8"))
+# 그래프·설명 질문에 쓰는 단어와 원래 저장소(-1, -2)의 설명 자료
+KNOW = json.loads((Path(__file__).resolve().parent / "knowledge.json").read_text(encoding="utf-8"))
 MAX_GAP = NLU["max_gap"]
 NUM_MASK, MENTION_MASK, CONCEPT_MASK = "#", "@", "%"
 
@@ -512,11 +514,132 @@ def understand(text, specs, last=None, prev=None):
     if prev and prev.get("dataset") == plan["dataset"] and prev.get("intent") in CARRY:
         _carry(plan, prev, spec, ctx)
     _concepts(plan, spec, ctx)
+    t = normalize(text)[0]
+    done = False
     if plan["unused"] and not plan["values"] and not plan["sweep"] and not plan["effect"]:
-        _guess_numbers(plan, specs, ctx)
+        # "왜 13 에폭에서 멈췄어?"처럼 설명을 묻는 질문의 숫자는 짐작하지 않음
+        if any(has_word(t, w) for w in KNOW["chart_words"]) or not _explain(plan, specs, t, ctx, strict=True):
+            _guess_numbers(plan, specs, ctx)
+        else:
+            done = True
+    if not done and not _chart(plan, specs, t, ctx, prev):
+        _explain(plan, specs, t, ctx)
     if plan["intent"] == "unknown":
         _clarify(plan, specs, ctx)
     return plan
+
+
+# ── 7. 그래프·설명 질문 ───────────────────────────────
+NON_DATA = ("help", "greet", "thanks", "about", "unknown", "clarify")
+
+
+def _home(plan, specs, want, prev, ctx):
+    """모델 이름만 말한 그래프·설명 질문: 그 모델을 처음 만든 저장소의 데이터로 (-1 회귀 → 키·몸무게, -2 신경망 → 당뇨병).
+    열 이름·키워드를 말했거나 바로 앞 질문에서 데이터를 정했으면 그 데이터에 머묾"""
+    if ctx["strong"] or not want:
+        return False
+    if prev and prev.get("dataset") == plan["dataset"] and prev.get("explicit") and prev.get("intent") not in NON_DATA:
+        return False
+    home = next((sp for sp in specs if sp.get("home") == want), None)
+    if not home or home["title"] == plan["dataset"]:
+        return False
+    plan.update(dataset=home["title"], target=home["target"], values={}, sweep=None, effect=None,
+                focus=None, unused=[], columns=[])
+    return True
+
+
+def _chart(plan, specs, t, ctx, prev):
+    """'인공신경망 그래프 보여줘', '학습 곡선', '잔차 그래프' → 어떤 그래프를 그릴지"""
+    kinds = [k for k in KNOW["chart_kind_order"] if any(has_word(t, w) for w in KNOW["chart_kinds"][k])]
+    asked_chart = any(has_word(t, w) for w in KNOW["chart_words"]) or (
+        bool(kinds) and plan["models"] != [] and any(has_word(t, w) for w in KNOW["show_words"]))  # "신경망 구조 보여줘"
+    again = (prev and prev.get("intent") == "chart" and plan["intent"] in ("unknown", "compare")
+             and not plan["values"] and (plan["models"] or kinds))         # "그럼 잔차는?", "신경망으로는?"
+    if not asked_chart and not again:
+        return False
+    models = plan["models"]
+    ann = "인공신경망" in models
+    reg = any(m != "인공신경망" for m in models)
+    follow = again and (not asked_chart or ctx["ctxword"])     # "그럼 잔차는?" → 앞 그래프의 모델 그대로
+    if follow and not kinds:
+        kinds = list(prev["chart"]["kinds"])
+    want = ("ann" if (ann and not reg) or "learning" in kinds or "network" in kinds
+            else "regression" if reg else None)
+    switched = False if again else _home(plan, specs, want, prev, ctx)
+    spec = next(sp for sp in specs if sp["title"] == plan["dataset"])
+    if "importance" in kinds and len(spec["columns"]) <= 2:
+        kinds = [k for k in kinds if k != "importance"] + ([] if "fit" in kinds else ["fit"])
+    has_vals = bool(plan["values"] or plan["sweep"] or plan["effect"])
+    asked = [] if switched else [c for c in ctx["asked"] if c in spec["columns"]]
+    target = plan["target"] or spec["target"]
+    if len(asked) == 1 and asked[0] == target and target != spec["target"] and not has_vals:
+        target = spec["target"]                         # "BMI 그래프" → BMI에 따른 기본 목표
+    if not kinds:
+        if has_vals or len(spec["columns"]) == 2 or any(c != target for c in asked):
+            kinds = ["fit"]
+        elif ann and not reg:
+            kinds = ["learning", "actual"]
+        else:
+            kinds = ["actual"]
+    x = None
+    if plan["sweep"]:
+        x = plan["sweep"]["col"]
+    elif plan["effect"]:
+        x = plan["effect"]["col"]
+    elif plan["focus"] and plan["focus"] != target:
+        x = plan["focus"]
+    if x is None:
+        x = next((c for c in asked if c != target), None)
+    if x is None and len(spec["columns"]) == 2:
+        x = next(c for c in spec["columns"] if c != target)
+    xs = ([plan["values"][x]] if x in plan["values"]
+          else list(plan["sweep"]["values"]) if plan["sweep"] and plan["sweep"]["col"] == x else [])
+    if follow and not models and prev["chart"].get("models"):
+        models = list(prev["chart"]["models"])
+    plan.update(intent="chart", target=target, models=list(models),
+                chart={"kinds": kinds, "x": x, "target": target, "xs": xs, "models": list(models)})
+    return True
+
+
+def find_topic(t):
+    """설명 자료(knowledge.json)에서 질문에 맞는 주제. 긴 단어부터 찾고 찾은 자리는 가림
+    ('비선형회귀' 안의 '선형회귀'를 또 세지 않게). 모델 주제가 둘 이상이면 비교 설명(overview)"""
+    pairs = [(k.lower(), i) for i, tp in enumerate(KNOW["topics"]) for k in tp["keywords"]]
+    pairs.sort(key=lambda p: -len(p[0]))
+    s, found = t, {}
+    for k, i in pairs:
+        if has_word(s, k):
+            found[i] = max(found.get(i, 0), len(k))
+            s = s.replace(k, "\0" * len(k))
+    if not found:
+        return None
+    ids = [KNOW["topics"][i]["id"] for i in found]
+    if sum(1 for x in KNOW["model_topics"] if x in ids) >= 2:
+        return "overview"
+    i = max(found, key=lambda i: (found[i], -i))
+    return KNOW["topics"][i]["id"]
+
+
+def _explain(plan, specs, t, ctx, strict=False):
+    """'선형회귀가 뭐야?', '역전파 설명해줘', 'S5가 뭐야?' → 설명.
+    값을 넣은 질문은 예측으로 두고, 식·비교·통계 같은 질문은 '뭐야·설명·왜' 같은 말이 있을 때만 설명으로"""
+    if plan["values"] or plan["sweep"] or plan["effect"]:
+        return False
+    strong = any(has_word(t, w) for w in KNOW["explain_words"])
+    topic = find_topic(t)
+    if strict and not (strong and topic):
+        return False
+    if topic is None:
+        if strong and ctx["asked"] and (ctx["kw_intent"] is None or plan["intent"] in NON_DATA):
+            plan.update(intent="explain", topic=None, columns=list(ctx["asked"]))
+            return True
+        return False
+    tp = next(x for x in KNOW["topics"] if x["id"] == topic)
+    if not strong and not tp.get("self_explain") and plan["intent"] not in NON_DATA:
+        return False
+    _home(plan, specs, tp.get("home"), None, ctx)
+    plan.update(intent="explain", topic=topic, columns=[], unused=[])
+    return True
 
 
 def resolve(text, prev):
@@ -747,12 +870,13 @@ def _core(text, specs, last=None, stay=()):
         for f in found[1:]:
             if f[0] > best[0]:
                 best = f
-    score, _, spec, mentions, masked, fz, cw = best
+    score, strong_score, spec, mentions, masked, fz, cw = best
     notes += fz
     explicit = score > 0
     plan = {"intent": None, "dataset": spec["title"], "target": None, "values": {}, "sweep": None,
             "effect": None, "columns": [], "models": [], "notes": notes, "unused": [],
-            "explicit": explicit, "focus": None, "pick": None, "options": [], "reason": None}
+            "explicit": explicit, "focus": None, "pick": None, "options": [], "reason": None,
+            "chart": None, "topic": None}
 
     groups = group_numbers(toks, masked)
     assigned, effect = {}, None
@@ -928,7 +1052,7 @@ def _core(text, specs, last=None, stay=()):
                              for g in free],
                     "ctxword": any(has_word(masked, w) for w in NLU["context_words"]),
                     "kw_intent": intent, "asked": asked, "ask_target": ask_cols[-1] if ask_cols else None,
-                    "mentions": len(mentions),
+                    "mentions": len(mentions), "strong": strong_score,
                     "obesity": cw["obesity"] is not None, "sex_word": cw["male"] or cw["female"],
                     "eval": any(has_word(masked, w) for w in NLU["eval_words"])}
 
