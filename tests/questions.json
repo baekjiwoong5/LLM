@@ -1,0 +1,2363 @@
+[
+ {
+  "q": "키 175면 몸무게는?",
+  "intent": "predict",
+  "dataset": "키·몸무게",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  }
+ },
+ {
+  "q": "175cm면 몇 kg?",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  }
+ },
+ {
+  "q": "175센치인 사람 몸무게",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  }
+ },
+ {
+  "q": "신장 175 체중은?",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  }
+ },
+ {
+  "q": "1m 75 체중",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  }
+ },
+ {
+  "q": "1.75m인 사람은 몇 키로 나가?",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  }
+ },
+ {
+  "q": "키 1미터 80",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 180
+  }
+ },
+ {
+  "q": "키가 백칠십오면 몸무게 얼마야",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  }
+ },
+ {
+  "q": "몸무게는? 키가 175일 때",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  }
+ },
+ {
+  "q": "175 키인 사람 몸무게",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  }
+ },
+ {
+  "q": "몸무계 예측해줘 키 175",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  }
+ },
+ {
+  "q": "What is the weight if height is 175?",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  }
+ },
+ {
+  "q": "175",
+  "intent": "predict",
+  "dataset": "키·몸무게",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  }
+ },
+ {
+  "q": "키 175 정도면 체중 얼마나 나갈까",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  }
+ },
+ {
+  "q": "키가 약 175cm인 남자는 몇 킬로그램?",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  }
+ },
+ {
+  "q": "키 180 넘으면 몸무게?",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 180
+  }
+ },
+ {
+  "q": "키가 큰 편인 180cm는 몸무게가?",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 180
+  }
+ },
+ {
+  "q": "키 180이 큰 편이야? 몸무게는",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 180
+  }
+ },
+ {
+  "q": "170 몸무게?",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 170
+  }
+ },
+ {
+  "q": "키가 175인 사람 몸무게가 궁금해",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  }
+ },
+ {
+  "q": "몸무게 알려줘 키는 180",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 180
+  }
+ },
+ {
+  "q": "키 백팔십 이면?",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 180
+  }
+ },
+ {
+  "q": "weight for height 180cm",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 180
+  }
+ },
+ {
+  "q": "how tall is someone who weighs 70kg",
+  "intent": "predict",
+  "target": "키 (cm)",
+  "values": {
+   "몸무게 (kg)": 70
+  }
+ },
+ {
+  "q": "키 175cm, 나이 30살",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  }
+ },
+ {
+  "q": "아빠 키 180 엄마 키 160",
+  "intent": "sweep",
+  "target": "몸무게 (kg)",
+  "sweep": [
+   "키 (cm)",
+   [
+    180,
+    160
+   ]
+  ]
+ },
+ {
+  "q": "키 150에서 200까지 10단위로",
+  "intent": "sweep",
+  "target": "몸무게 (kg)",
+  "sweep": [
+   "키 (cm)",
+   [
+    150,
+    160,
+    170,
+    180,
+    190,
+    200
+   ]
+  ]
+ },
+ {
+  "q": "키 160부터 180까지 5씩",
+  "intent": "sweep",
+  "target": "몸무게 (kg)",
+  "sweep": [
+   "키 (cm)",
+   [
+    160,
+    165,
+    170,
+    175,
+    180
+   ]
+  ]
+ },
+ {
+  "q": "키 160~170 2cm 간격",
+  "intent": "sweep",
+  "target": "몸무게 (kg)",
+  "sweep": [
+   "키 (cm)",
+   [
+    160,
+    162,
+    164,
+    166,
+    168,
+    170
+   ]
+  ]
+ },
+ {
+  "q": "몸무게 80 키 160 비만이야?",
+  "intent": "obesity",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 160,
+   "몸무게 (kg)": 80
+  }
+ },
+ {
+  "q": "키 몸무게 상관관계",
+  "intent": "effect",
+  "target": "몸무게 (kg)",
+  "effect": [
+   "키 (cm)",
+   "+"
+  ]
+ },
+ {
+  "q": "키는 몇 cm부터 몇 cm까지 있어?",
+  "intent": "stats",
+  "columns": [
+   "키 (cm)"
+  ]
+ },
+ {
+  "q": "키가 1m 더 크면?",
+  "intent": "effect",
+  "target": "몸무게 (kg)",
+  "effect": [
+   "키 (cm)",
+   100
+  ]
+ },
+ {
+  "q": "키 210",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 210
+  }
+ },
+ {
+  "q": "몸무게 70이면 키는?",
+  "intent": "predict",
+  "target": "키 (cm)",
+  "values": {
+   "몸무게 (kg)": 70
+  }
+ },
+ {
+  "q": "70kg이면 키는 몇 cm?",
+  "intent": "predict",
+  "target": "키 (cm)",
+  "values": {
+   "몸무게 (kg)": 70
+  }
+ },
+ {
+  "q": "체중 70킬로인 사람 신장",
+  "intent": "predict",
+  "target": "키 (cm)",
+  "values": {
+   "몸무게 (kg)": 70
+  }
+ },
+ {
+  "q": "70키로면 키 얼마나 커?",
+  "intent": "predict",
+  "target": "키 (cm)",
+  "values": {
+   "몸무게 (kg)": 70
+  }
+ },
+ {
+  "q": "몸무게가 70이면 키가 얼마야?",
+  "intent": "predict",
+  "target": "키 (cm)",
+  "values": {
+   "몸무게 (kg)": 70
+  }
+ },
+ {
+  "q": "몸무게 70kg인 사람 키",
+  "intent": "predict",
+  "target": "키 (cm)",
+  "values": {
+   "몸무게 (kg)": 70
+  }
+ },
+ {
+  "q": "150파운드면 키는?",
+  "intent": "predict",
+  "target": "키 (cm)",
+  "values": {
+   "몸무게 (kg)": 68.0389
+  }
+ },
+ {
+  "q": "키 160, 170, 180일 때 몸무게",
+  "intent": "sweep",
+  "target": "몸무게 (kg)",
+  "sweep": [
+   "키 (cm)",
+   [
+    160,
+    170,
+    180
+   ]
+  ]
+ },
+ {
+  "q": "키 160~180 몸무게",
+  "intent": "sweep",
+  "target": "몸무게 (kg)",
+  "sweep": [
+   "키 (cm)",
+   [
+    160,
+    165,
+    170,
+    175,
+    180
+   ]
+  ]
+ },
+ {
+  "q": "키 160부터 180까지 몸무게 알려줘",
+  "intent": "sweep",
+  "target": "몸무게 (kg)",
+  "sweep": [
+   "키 (cm)",
+   [
+    160,
+    165,
+    170,
+    175,
+    180
+   ]
+  ]
+ },
+ {
+  "q": "160cm랑 180cm 몸무게 비교",
+  "intent": "sweep",
+  "target": "몸무게 (kg)",
+  "sweep": [
+   "키 (cm)",
+   [
+    160,
+    180
+   ]
+  ]
+ },
+ {
+  "q": "키 160인 사람과 180인 사람 몸무게 차이",
+  "intent": "sweep",
+  "target": "몸무게 (kg)",
+  "sweep": [
+   "키 (cm)",
+   [
+    160,
+    180
+   ]
+  ]
+ },
+ {
+  "q": "몸무게 60, 70, 80이면 키는?",
+  "intent": "sweep",
+  "target": "키 (cm)",
+  "sweep": [
+   "몸무게 (kg)",
+   [
+    60,
+    70,
+    80
+   ]
+  ]
+ },
+ {
+  "q": "키가 10cm 크면 몸무게는?",
+  "intent": "effect",
+  "target": "몸무게 (kg)",
+  "effect": [
+   "키 (cm)",
+   10
+  ]
+ },
+ {
+  "q": "키 1cm당 몸무게 몇 kg 늘어?",
+  "intent": "effect",
+  "target": "몸무게 (kg)",
+  "effect": [
+   "키 (cm)",
+   1
+  ]
+ },
+ {
+  "q": "키가 5cm 줄면 몸무게는?",
+  "intent": "effect",
+  "target": "몸무게 (kg)",
+  "effect": [
+   "키 (cm)",
+   -5
+  ]
+ },
+ {
+  "q": "키가 크면 몸무게도 많이 나가?",
+  "intent": "effect",
+  "target": "몸무게 (kg)",
+  "effect": [
+   "키 (cm)",
+   "+"
+  ]
+ },
+ {
+  "q": "키 170에서 10cm 더 크면 몸무게는?",
+  "intent": "effect",
+  "target": "몸무게 (kg)",
+  "effect": [
+   "키 (cm)",
+   10
+  ],
+  "values": {
+   "키 (cm)": 170
+  }
+ },
+ {
+  "q": "키랑 몸무게는 무슨 관계야?",
+  "intent": "effect",
+  "target": "몸무게 (kg)",
+  "effect": [
+   "키 (cm)",
+   "+"
+  ]
+ },
+ {
+  "q": "키 175에 몸무게 80이면?",
+  "intent": "check",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175,
+   "몸무게 (kg)": 80
+  }
+ },
+ {
+  "q": "175cm 80kg 정상이야?",
+  "intent": "obesity",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175,
+   "몸무게 (kg)": 80
+  }
+ },
+ {
+  "q": "나이 59, 성별 2, bmi 32.1, 평균 혈압 101, s1 157, s2 93.2, s3 38, s4 4, s5 4.8598, 혈당 87 이면 진행도는?",
+  "intent": "predict",
+  "dataset": "당뇨병 진행도",
+  "target": "progression",
+  "values": {
+   "age": 59,
+   "sex": 2,
+   "bmi": 32.1,
+   "bp": 101,
+   "s1": 157,
+   "s2": 93.2,
+   "s3": 38,
+   "s4": 4,
+   "s5": 4.8598,
+   "s6": 87
+  }
+ },
+ {
+  "q": "59 2 32.1 101 157 93.2 38 4 4.8598 87",
+  "intent": "predict",
+  "dataset": "당뇨병 진행도",
+  "target": "progression",
+  "values": {
+   "age": 59,
+   "sex": 2,
+   "bmi": 32.1,
+   "bp": 101,
+   "s1": 157,
+   "s2": 93.2,
+   "s3": 38,
+   "s4": 4,
+   "s5": 4.8598,
+   "s6": 87
+  }
+ },
+ {
+  "q": "59, 2, 32.1, 101, 157, 93.2, 38, 4, 4.8598, 87",
+  "intent": "predict",
+  "dataset": "당뇨병 진행도",
+  "target": "progression",
+  "values": {
+   "age": 59,
+   "sex": 2,
+   "bmi": 32.1,
+   "bp": 101,
+   "s1": 157,
+   "s2": 93.2,
+   "s3": 38,
+   "s4": 4,
+   "s5": 4.8598,
+   "s6": 87
+  }
+ },
+ {
+  "q": "BMI 30이고 혈압 110인 환자의 진행도",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "bmi": 30,
+   "bp": 110
+  }
+ },
+ {
+  "q": "혈압이 110이고 BMI가 30인 환자는 얼마나 진행될까",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "bmi": 30,
+   "bp": 110
+  }
+ },
+ {
+  "q": "50살 환자 BMI 28이면 1년 뒤 진행도",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "age": 50,
+   "bmi": 28
+  }
+ },
+ {
+  "q": "마흔다섯 살, 체질량지수 25",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "age": 45,
+   "bmi": 25
+  }
+ },
+ {
+  "q": "콜레스트롤 200 혈당 100",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "s1": 200,
+   "s6": 100
+  }
+ },
+ {
+  "q": "혈당 수치가 120인 환자",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "s6": 120
+  }
+ },
+ {
+  "q": "TC/HDL 5, HDL 40 진행도?",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "s4": 5,
+   "s3": 40
+  }
+ },
+ {
+  "q": "성별 1 나이 30 진행도",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "sex": 1,
+   "age": 30
+  }
+ },
+ {
+  "q": "진행도 200이면 BMI는?",
+  "intent": "predict",
+  "target": "bmi",
+  "values": {
+   "progression": 200
+  }
+ },
+ {
+  "q": "BMI 30이면 혈당은 얼마쯤이야?",
+  "intent": "predict",
+  "target": "s6",
+  "values": {
+   "bmi": 30
+  }
+ },
+ {
+  "q": "BMI 25~35일 때 진행도",
+  "intent": "sweep",
+  "target": "progression",
+  "sweep": [
+   "bmi",
+   [
+    25,
+    27,
+    29,
+    31,
+    33,
+    35
+   ]
+  ]
+ },
+ {
+  "q": "BMI가 5 늘면 진행도는?",
+  "intent": "effect",
+  "target": "progression",
+  "effect": [
+   "bmi",
+   5
+  ]
+ },
+ {
+  "q": "HDL이 10 떨어지면 진행도는?",
+  "intent": "effect",
+  "target": "progression",
+  "effect": [
+   "s3",
+   -10
+  ]
+ },
+ {
+  "q": "BMI가 2 올라가면?",
+  "intent": "effect",
+  "target": "progression",
+  "effect": [
+   "bmi",
+   2
+  ]
+ },
+ {
+  "q": "BMI가 높으면 진행도도 높아?",
+  "intent": "effect",
+  "target": "progression",
+  "effect": [
+   "bmi",
+   "+"
+  ]
+ },
+ {
+  "q": "혈당이 낮으면 진행도는?",
+  "intent": "effect",
+  "target": "progression",
+  "effect": [
+   "s6",
+   "-"
+  ]
+ },
+ {
+  "q": "진행도에 영향이 큰 건?",
+  "intent": "importance",
+  "target": "progression"
+ },
+ {
+  "q": "당뇨 진행에 제일 중요한 게 뭐야",
+  "intent": "importance",
+  "target": "progression"
+ },
+ {
+  "q": "혈당에 영향 주는 건?",
+  "intent": "importance",
+  "target": "s6"
+ },
+ {
+  "q": "BMI가 진행도에 미치는 영향",
+  "intent": "effect",
+  "target": "progression",
+  "effect": [
+   "bmi",
+   "+"
+  ]
+ },
+ {
+  "q": "BMI 30이고 진행도 200이면?",
+  "intent": "check",
+  "target": "progression",
+  "values": {
+   "bmi": 30,
+   "progression": 200
+  }
+ },
+ {
+  "q": "진행도 200",
+  "intent": "need_target"
+ },
+ {
+  "q": "당뇨 모델 성능 비교",
+  "intent": "compare",
+  "dataset": "당뇨병 진행도",
+  "target": "progression"
+ },
+ {
+  "q": "혈당 예측은 어떤 모델이 정확해?",
+  "intent": "compare",
+  "target": "s6"
+ },
+ {
+  "q": "당뇨 선형 식",
+  "intent": "equation",
+  "dataset": "당뇨병 진행도",
+  "models": [
+   "선형회귀"
+  ]
+ },
+ {
+  "q": "신경망 구조는?",
+  "intent": "equation",
+  "dataset": "당뇨병 진행도",
+  "models": [
+   "인공신경망"
+  ]
+ },
+ {
+  "q": "비선형 회귀식만 보여줘",
+  "intent": "equation",
+  "models": [
+   "비선형(2차 다항)",
+   "비선형(거듭제곱)",
+   "비선형(지수)"
+  ]
+ },
+ {
+  "q": "BMI 평균은?",
+  "intent": "stats",
+  "columns": [
+   "bmi"
+  ]
+ },
+ {
+  "q": "가장 높은 혈당은?",
+  "intent": "stats",
+  "columns": [
+   "s6"
+  ]
+ },
+ {
+  "q": "환자는 몇 명이야?",
+  "intent": "data",
+  "dataset": "당뇨병 진행도"
+ },
+ {
+  "q": "어떤 모델이 제일 정확해?",
+  "intent": "compare"
+ },
+ {
+  "q": "모델 중에 뭐가 제일 잘 맞아",
+  "intent": "compare"
+ },
+ {
+  "q": "누가 1등이야",
+  "intent": "compare"
+ },
+ {
+  "q": "키 몸무게 성능 비교",
+  "intent": "compare",
+  "dataset": "키·몸무게",
+  "target": "몸무게 (kg)"
+ },
+ {
+  "q": "몸무게로 키 맞히는 정확도는?",
+  "intent": "compare",
+  "dataset": "키·몸무게",
+  "target": "키 (cm)"
+ },
+ {
+  "q": "회귀식 알려줘",
+  "intent": "equation"
+ },
+ {
+  "q": "공식 보여줘",
+  "intent": "equation"
+ },
+ {
+  "q": "2차 다항 식 알려줘 키",
+  "intent": "equation",
+  "dataset": "키·몸무게",
+  "models": [
+   "비선형(2차 다항)"
+  ]
+ },
+ {
+  "q": "몸무게로 키 구하는 식",
+  "intent": "equation",
+  "dataset": "키·몸무게",
+  "target": "키 (cm)"
+ },
+ {
+  "q": "평균이랑 범위 알려줘",
+  "intent": "stats"
+ },
+ {
+  "q": "제일 무거운 사람은 몇 kg?",
+  "intent": "stats",
+  "dataset": "키·몸무게"
+ },
+ {
+  "q": "어떤 데이터가 있어?",
+  "intent": "data"
+ },
+ {
+  "q": "무슨 자료로 학습했어",
+  "intent": "data"
+ },
+ {
+  "q": "몸무게 예측해줘",
+  "intent": "need_input",
+  "target": "몸무게 (kg)"
+ },
+ {
+  "q": "몸무게는 얼마나 나가?",
+  "intent": "need_input",
+  "target": "몸무게 (kg)"
+ },
+ {
+  "q": "안녕",
+  "intent": "greet"
+ },
+ {
+  "q": "hi",
+  "intent": "greet"
+ },
+ {
+  "q": "고마워!",
+  "intent": "thanks"
+ },
+ {
+  "q": "너는 누구야?",
+  "intent": "about"
+ },
+ {
+  "q": "뭐 물어보면 돼?",
+  "intent": "help"
+ },
+ {
+  "q": "ㅁㄴㅇㄹ",
+  "intent": "clarify"
+ },
+ {
+  "q": "나이가 많을수록 진행도는?",
+  "intent": "effect",
+  "dataset": "당뇨병 진행도",
+  "target": "progression",
+  "effect": [
+   "age",
+   "+"
+  ]
+ },
+ {
+  "q": "평균 혈압 120 이고 혈당 130, 진행도 예측",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "bp": 120,
+   "s6": 130
+  }
+ },
+ {
+  "q": "60세 BMI 30",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "age": 60,
+   "bmi": 30
+  }
+ },
+ {
+  "q": "BMI 20에서 30으로 바뀌면 진행도 차이",
+  "intent": "sweep",
+  "target": "progression",
+  "sweep": [
+   "bmi",
+   [
+    20,
+    22,
+    24,
+    26,
+    28,
+    30
+   ]
+  ]
+ },
+ {
+  "q": "predict diabetes progression for bmi 30",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "bmi": 30
+  }
+ },
+ {
+  "q": "혈압 높은 환자 진행도",
+  "intent": "effect",
+  "target": "progression",
+  "effect": [
+   "bp",
+   "+"
+  ]
+ },
+ {
+  "q": "LDL 150일 때 HDL은?",
+  "intent": "predict",
+  "target": "s3",
+  "values": {
+   "s2": 150
+  }
+ },
+ {
+  "q": "진행도 300인 환자 BMI는 얼마?",
+  "intent": "predict",
+  "target": "bmi",
+  "values": {
+   "progression": 300
+  }
+ },
+ {
+  "_": "── 이어지는 대화 ──",
+  "q": "BMI 30이고 혈압 110인 환자의 진행도",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "bmi": 30,
+   "bp": 110
+  }
+ },
+ {
+  "q": "그럼 35면?",
+  "intent": "predict",
+  "dataset": "당뇨병 진행도",
+  "target": "progression",
+  "values": {
+   "bmi": 35,
+   "bp": 110
+  }
+ },
+ {
+  "q": "그 환자의 혈당은?",
+  "intent": "predict",
+  "target": "s6",
+  "values": {
+   "bmi": 35,
+   "bp": 110
+  }
+ },
+ {
+  "q": "신경망으로는?",
+  "intent": "predict",
+  "target": "s6",
+  "values": {
+   "bmi": 35,
+   "bp": 110
+  },
+  "pick": "인공신경망"
+ },
+ {
+  "q": "그럼 혈압 120이면?",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "bmi": 35,
+   "bp": 120
+  }
+ },
+ {
+  "q": "50살이면?",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "bmi": 35,
+   "bp": 120,
+   "age": 50
+  }
+ },
+ {
+  "q": "BMI 25~35는?",
+  "intent": "sweep",
+  "target": "progression",
+  "sweep": [
+   "bmi",
+   [
+    25,
+    27,
+    29,
+    31,
+    33,
+    35
+   ]
+  ]
+ },
+ {
+  "q": "남자는?",
+  "intent": "sweep",
+  "dataset": "당뇨병 진행도",
+  "target": "progression",
+  "sweep": [
+   "sex",
+   [
+    1,
+    2
+   ]
+  ]
+ },
+ {
+  "q": "여자 BMI 30이면 진행도?",
+  "intent": "sweep",
+  "target": "progression",
+  "sweep": [
+   "sex",
+   [
+    1,
+    2
+   ]
+  ],
+  "values": {
+   "bmi": 30
+  }
+ },
+ {
+  "q": "진행도 25이면 성별은?",
+  "intent": "predict",
+  "target": "sex",
+  "values": {
+   "progression": 25
+  }
+ },
+ {
+  "q": "BMI 32면 비만이야?",
+  "intent": "obesity",
+  "values": {
+   "bmi": 32
+  }
+ },
+ {
+  "q": "저체중 환자는 몇 명이야?",
+  "intent": "obesity",
+  "dataset": "당뇨병 진행도",
+  "values": {}
+ },
+ {
+  "q": "키 175면 몸무게는?",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  }
+ },
+ {
+  "q": "180이면?",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 180
+  }
+ },
+ {
+  "q": "그럼 비만이야?",
+  "intent": "obesity",
+  "dataset": "키·몸무게",
+  "values": {
+   "키 (cm)": 180
+  }
+ },
+ {
+  "q": "선형회귀로는?",
+  "intent": "obesity",
+  "values": {
+   "키 (cm)": 180
+  },
+  "pick": "선형회귀"
+ },
+ {
+  "q": "몸무게 70kg인 사람은 비만이야?",
+  "intent": "obesity",
+  "values": {
+   "몸무게 (kg)": 70
+  }
+ },
+ {
+  "q": "키 175에 몸무게 80이면?",
+  "intent": "check",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175,
+   "몸무게 (kg)": 80
+  }
+ },
+ {
+  "q": "그럼 180은?",
+  "intent": "check",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 180,
+   "몸무게 (kg)": 80
+  }
+ },
+ {
+  "q": "몸무게는?",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 180
+  }
+ },
+ {
+  "q": "키는 얼마나 될까?",
+  "intent": "need_input",
+  "target": "키 (cm)"
+ },
+ {
+  "q": "남자 키 175면 몸무게",
+  "intent": "predict",
+  "dataset": "키·몸무게",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  }
+ },
+ {
+  "q": "키가 175센티인 사람은 체중이 대략 몇 키로야?",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  },
+  "fresh": true
+ },
+ {
+  "q": "175 센티면 몸무게 대충 얼마 나가요?",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  },
+  "fresh": true
+ },
+ {
+  "q": "신장이 175cm인 경우 예상 체중을 알려주세요",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  },
+  "fresh": true
+ },
+ {
+  "q": "키 175 정도 되는 사람 몸무게 예상해줘",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  },
+  "fresh": true
+ },
+ {
+  "q": "175cm 사람 평균 몸무게 알려줄래?",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  },
+  "fresh": true
+ },
+ {
+  "q": "키175몸무게",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  },
+  "fresh": true
+ },
+ {
+  "q": "키가 175라면 몸무게는 어떻게 될까",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  },
+  "fresh": true
+ },
+ {
+  "q": "175cm일 때 예측 체중",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  },
+  "fresh": true
+ },
+ {
+  "q": "키 170대 중반이면 몸무게?",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  },
+  "fresh": true
+ },
+ {
+  "q": "키가 5피트 9인치면 몸무게는?",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175.26
+  },
+  "fresh": true
+ },
+ {
+  "q": "키 70인치면 몸무게",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 177.8
+  },
+  "fresh": true
+ },
+ {
+  "q": "If I'm 175cm, how much would I weigh?",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  },
+  "fresh": true
+ },
+ {
+  "q": "키 175 몸무게 좀 알려줘요",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  },
+  "fresh": true
+ },
+ {
+  "q": "몸 무게 예측 키 175",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  },
+  "fresh": true
+ },
+ {
+  "q": "키가 175 언저리면 몸무게는",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  },
+  "fresh": true
+ },
+ {
+  "q": "175cm 남자 체중 평균적으로 얼마?",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175
+  },
+  "fresh": true
+ },
+ {
+  "q": "체중 70킬로그램인 사람의 키는 얼마나 될까요?",
+  "intent": "predict",
+  "target": "키 (cm)",
+  "values": {
+   "몸무게 (kg)": 70
+  },
+  "fresh": true
+ },
+ {
+  "q": "70kg 나가는 사람 키 예상",
+  "intent": "predict",
+  "target": "키 (cm)",
+  "values": {
+   "몸무게 (kg)": 70
+  },
+  "fresh": true
+ },
+ {
+  "q": "몸무게가 70이면 키는 몇 센티쯤?",
+  "intent": "predict",
+  "target": "키 (cm)",
+  "values": {
+   "몸무게 (kg)": 70
+  },
+  "fresh": true
+ },
+ {
+  "q": "70키로그램이면 신장은?",
+  "intent": "predict",
+  "target": "키 (cm)",
+  "values": {
+   "몸무게 (kg)": 70
+  },
+  "fresh": true
+ },
+ {
+  "q": "몸뭄게 70이면 키",
+  "intent": "predict",
+  "target": "키 (cm)",
+  "values": {
+   "몸무게 (kg)": 70
+  },
+  "fresh": true
+ },
+ {
+  "q": "키 160 170 180 각각 몸무게",
+  "intent": "sweep",
+  "target": "몸무게 (kg)",
+  "sweep": [
+   "키 (cm)",
+   [
+    160,
+    170,
+    180
+   ]
+  ],
+  "fresh": true
+ },
+ {
+  "q": "키가 160일 때와 180일 때 몸무게 비교해줘",
+  "intent": "sweep",
+  "target": "몸무게 (kg)",
+  "sweep": [
+   "키 (cm)",
+   [
+    160,
+    180
+   ]
+  ],
+  "fresh": true
+ },
+ {
+  "q": "키별 몸무게 표로 보여줘",
+  "intent": "sweep",
+  "target": "몸무게 (kg)",
+  "sweep": [
+   "키 (cm)",
+   [
+    150,
+    160,
+    170,
+    180,
+    190
+   ]
+  ],
+  "fresh": true
+ },
+ {
+  "q": "키에 따른 몸무게 변화",
+  "intent": "sweep",
+  "target": "몸무게 (kg)",
+  "sweep": [
+   "키 (cm)",
+   [
+    150,
+    160,
+    170,
+    180,
+    190
+   ]
+  ],
+  "fresh": true
+ },
+ {
+  "q": "몸무게별 키",
+  "intent": "sweep",
+  "target": "키 (cm)",
+  "sweep": [
+   "몸무게 (kg)",
+   [
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100,
+    110
+   ]
+  ],
+  "fresh": true
+ },
+ {
+  "q": "키가 1센티 커질 때마다 몸무게는 몇 키로씩 늘어?",
+  "intent": "effect",
+  "target": "몸무게 (kg)",
+  "effect": [
+   "키 (cm)",
+   1
+  ],
+  "fresh": true
+ },
+ {
+  "q": "키가 클수록 몸무게도 늘어나나?",
+  "intent": "effect",
+  "target": "몸무게 (kg)",
+  "effect": [
+   "키 (cm)",
+   "+"
+  ],
+  "fresh": true
+ },
+ {
+  "q": "키를 10cm 늘리면 체중은?",
+  "intent": "effect",
+  "target": "몸무게 (kg)",
+  "effect": [
+   "키 (cm)",
+   10
+  ],
+  "fresh": true
+ },
+ {
+  "q": "키 5센티 작으면?",
+  "intent": "effect",
+  "target": "몸무게 (kg)",
+  "effect": [
+   "키 (cm)",
+   -5
+  ],
+  "fresh": true
+ },
+ {
+  "q": "175cm의 적정 체중은?",
+  "intent": "obesity",
+  "values": {
+   "키 (cm)": 175
+  },
+  "fresh": true
+ },
+ {
+  "q": "키 175 표준체중",
+  "intent": "obesity",
+  "values": {
+   "키 (cm)": 175
+  },
+  "fresh": true
+ },
+ {
+  "q": "175cm 80kg이면 살찐 편이야?",
+  "intent": "obesity",
+  "values": {
+   "키 (cm)": 175,
+   "몸무게 (kg)": 80
+  },
+  "fresh": true
+ },
+ {
+  "q": "키 175에 80키로면 과체중이야?",
+  "intent": "obesity",
+  "values": {
+   "키 (cm)": 175,
+   "몸무게 (kg)": 80
+  },
+  "fresh": true
+ },
+ {
+  "q": "나이 50세, 비만도 28, 혈압 90인 환자 1년 후 당뇨 진행 정도는?",
+  "intent": "predict",
+  "dataset": "당뇨병 진행도",
+  "target": "progression",
+  "values": {
+   "age": 50,
+   "bmi": 28,
+   "bp": 90
+  },
+  "fresh": true
+ },
+ {
+  "q": "혈당 수치 110, 콜레스테롤 220인 환자는 얼마나 악화될까",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "s6": 110,
+   "s1": 220
+  },
+  "fresh": true
+ },
+ {
+  "q": "50대 남성 BMI 27",
+  "intent": "sweep",
+  "target": "progression",
+  "sweep": [
+   "sex",
+   [
+    1,
+    2
+   ]
+  ],
+  "values": {
+   "age": 55,
+   "bmi": 27
+  },
+  "fresh": true
+ },
+ {
+  "q": "체질량 지수 30 환자 예후",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "bmi": 30
+  },
+  "fresh": true
+ },
+ {
+  "q": "LDL이 160이면 진행도가 어떻게 돼",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "s2": 160
+  },
+  "fresh": true
+ },
+ {
+  "q": "좋은 콜레스테롤 60 나쁜 콜레스테롤 100",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "s3": 60,
+   "s2": 100
+  },
+  "fresh": true
+ },
+ {
+  "q": "공복 혈당 100인 사람",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "s6": 100
+  },
+  "fresh": true
+ },
+ {
+  "q": "중성 지방 5",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "s5": 5
+  },
+  "fresh": true
+ },
+ {
+  "q": "평균혈압 100 질병진행도",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "bp": 100
+  },
+  "fresh": true
+ },
+ {
+  "q": "헐당 120이면 진행도",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "s6": 120
+  },
+  "fresh": true
+ },
+ {
+  "q": "환자 나이가 60살이고 혈압이 120이면 어느 정도로 진행될까요?",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "age": 60,
+   "bp": 120
+  },
+  "fresh": true
+ },
+ {
+  "q": "BMI 25 30 35일 때 진행도",
+  "intent": "sweep",
+  "target": "progression",
+  "sweep": [
+   "bmi",
+   [
+    25,
+    30,
+    35
+   ]
+  ],
+  "fresh": true
+ },
+ {
+  "q": "BMI에 따른 진행도",
+  "intent": "sweep",
+  "target": "progression",
+  "sweep": [
+   "bmi",
+   [
+    20,
+    25,
+    30,
+    35,
+    40
+   ]
+  ],
+  "fresh": true
+ },
+ {
+  "q": "BMI가 1 올라가면 진행도는 얼마나 올라?",
+  "intent": "effect",
+  "target": "progression",
+  "effect": [
+   "bmi",
+   1
+  ],
+  "fresh": true
+ },
+ {
+  "q": "BMI 1당 진행도 변화량",
+  "intent": "effect",
+  "target": "progression",
+  "effect": [
+   "bmi",
+   1
+  ],
+  "fresh": true
+ },
+ {
+  "q": "혈당이 10 증가할 때 진행도",
+  "intent": "effect",
+  "target": "progression",
+  "effect": [
+   "s6",
+   10
+  ],
+  "fresh": true
+ },
+ {
+  "q": "나이 들수록 진행도 높아져?",
+  "intent": "effect",
+  "target": "progression",
+  "effect": [
+   "age",
+   "+"
+  ],
+  "fresh": true
+ },
+ {
+  "q": "BMI 낮추면 진행도 줄어?",
+  "intent": "effect",
+  "target": "progression",
+  "effect": [
+   "bmi",
+   "-"
+  ],
+  "fresh": true
+ },
+ {
+  "q": "진행도를 가장 많이 좌우하는 요인은?",
+  "intent": "importance",
+  "target": "progression",
+  "fresh": true
+ },
+ {
+  "q": "당뇨 진행에서 어떤 변수가 제일 중요해?",
+  "intent": "importance",
+  "target": "progression",
+  "fresh": true
+ },
+ {
+  "q": "당뇨 진행의 주요 원인은?",
+  "intent": "importance",
+  "target": "progression",
+  "fresh": true
+ },
+ {
+  "q": "무엇이 당뇨 진행에 큰 영향을 줘?",
+  "intent": "importance",
+  "target": "progression",
+  "fresh": true
+ },
+ {
+  "q": "모델 성능 순위 알려줘",
+  "intent": "compare",
+  "fresh": true
+ },
+ {
+  "q": "제일 잘 맞히는 모델은?",
+  "intent": "compare",
+  "fresh": true
+ },
+ {
+  "q": "어떤 알고리즘이 나아?",
+  "intent": "compare",
+  "fresh": true
+ },
+ {
+  "q": "정확도 알려줘",
+  "intent": "compare",
+  "fresh": true
+ },
+ {
+  "q": "which model is the best?",
+  "intent": "compare",
+  "fresh": true
+ },
+ {
+  "q": "최고의 모델은 뭐야",
+  "intent": "compare",
+  "fresh": true
+ },
+ {
+  "q": "기울기랑 절편 알려줘",
+  "intent": "equation",
+  "fresh": true
+ },
+ {
+  "q": "신경망 몇 층이야?",
+  "intent": "equation",
+  "models": [
+   "인공신경망"
+  ],
+  "fresh": true
+ },
+ {
+  "q": "은닉층 노드 수",
+  "intent": "equation",
+  "fresh": true
+ },
+ {
+  "q": "회귀 방정식 보여줘",
+  "intent": "equation",
+  "fresh": true
+ },
+ {
+  "q": "최고 혈당은?",
+  "intent": "stats",
+  "columns": [
+   "s6"
+  ],
+  "fresh": true
+ },
+ {
+  "q": "최저 BMI",
+  "intent": "stats",
+  "columns": [
+   "bmi"
+  ],
+  "fresh": true
+ },
+ {
+  "q": "몸무게 분포 알려줘",
+  "intent": "stats",
+  "columns": [
+   "몸무게 (kg)"
+  ],
+  "fresh": true
+ },
+ {
+  "q": "키 중간값",
+  "intent": "stats",
+  "columns": [
+   "키 (cm)"
+  ],
+  "fresh": true
+ },
+ {
+  "q": "데이터 크기가 어떻게 돼?",
+  "intent": "data",
+  "fresh": true
+ },
+ {
+  "q": "어떤 항목들이 있어?",
+  "intent": "data",
+  "fresh": true
+ },
+ {
+  "q": "열 이름 목록",
+  "intent": "data",
+  "fresh": true
+ },
+ {
+  "q": "어떻게 질문하면 돼?",
+  "intent": "help",
+  "fresh": true
+ },
+ {
+  "q": "도와줘",
+  "intent": "help",
+  "fresh": true
+ },
+ {
+  "q": "안녕하세요",
+  "intent": "greet",
+  "fresh": true
+ },
+ {
+  "q": "수고했어",
+  "intent": "thanks",
+  "fresh": true
+ },
+ {
+  "q": "땡큐",
+  "intent": "thanks",
+  "fresh": true
+ },
+ {
+  "q": "180센티 남자 몸무게 보통 얼마야",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 180
+  },
+  "fresh": true
+ },
+ {
+  "q": "신장 165면 체중 예상치는?",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 165
+  },
+  "fresh": true
+ },
+ {
+  "q": "키가 백육십이면 몇 킬로 나갈까",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 160
+  },
+  "fresh": true
+ },
+ {
+  "q": "키 1m 68cm 체중",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 168
+  },
+  "fresh": true
+ },
+ {
+  "q": "몸무게 계산해줘. 키는 172야",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 172
+  },
+  "fresh": true
+ },
+ {
+  "q": "키 158인 여자 몸무게는",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 158
+  },
+  "fresh": true
+ },
+ {
+  "q": "weight if height 190",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 190
+  },
+  "fresh": true
+ },
+ {
+  "q": "키 6피트면 몸무게는?",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 182.88
+  },
+  "fresh": true
+ },
+ {
+  "q": "몸무게 55키로 키 추정",
+  "intent": "predict",
+  "target": "키 (cm)",
+  "values": {
+   "몸무게 (kg)": 55
+  },
+  "fresh": true
+ },
+ {
+  "q": "체중이 90kg인 사람은 키가 몇일까",
+  "intent": "predict",
+  "target": "키 (cm)",
+  "values": {
+   "몸무게 (kg)": 90
+  },
+  "fresh": true
+ },
+ {
+  "q": "몸무개 80이면 키 몇이야",
+  "intent": "predict",
+  "target": "키 (cm)",
+  "values": {
+   "몸무게 (kg)": 80
+  },
+  "fresh": true
+ },
+ {
+  "q": "키 150부터 190까지 몸무게 표",
+  "intent": "sweep",
+  "target": "몸무게 (kg)",
+  "sweep": [
+   "키 (cm)",
+   [
+    150,
+    155,
+    160,
+    165,
+    170,
+    175,
+    180,
+    185,
+    190
+   ]
+  ],
+  "fresh": true
+ },
+ {
+  "q": "160이랑 170이랑 180 몸무게",
+  "intent": "sweep",
+  "target": "몸무게 (kg)",
+  "sweep": [
+   "키 (cm)",
+   [
+    160,
+    170,
+    180
+   ]
+  ],
+  "fresh": true
+ },
+ {
+  "q": "몸무게에 따른 키",
+  "intent": "sweep",
+  "target": "키 (cm)",
+  "sweep": [
+   "몸무게 (kg)",
+   [
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100,
+    110
+   ]
+  ],
+  "fresh": true
+ },
+ {
+  "q": "키가 2cm 더 크면 체중은 얼마나 더 나가?",
+  "intent": "effect",
+  "target": "몸무게 (kg)",
+  "effect": [
+   "키 (cm)",
+   2
+  ],
+  "fresh": true
+ },
+ {
+  "q": "키 큰 사람이 더 무거워?",
+  "intent": "effect",
+  "target": "몸무게 (kg)",
+  "effect": [
+   "키 (cm)",
+   "+"
+  ],
+  "fresh": true
+ },
+ {
+  "q": "키 180에 몸무게 100이면 어때?",
+  "intent": "check",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 180,
+   "몸무게 (kg)": 100
+  },
+  "fresh": true
+ },
+ {
+  "q": "168cm 58kg 비만도 판정",
+  "intent": "obesity",
+  "values": {
+   "키 (cm)": 168,
+   "몸무게 (kg)": 58
+  },
+  "fresh": true
+ },
+ {
+  "q": "키 160 적정 몸무게",
+  "intent": "obesity",
+  "values": {
+   "키 (cm)": 160
+  },
+  "fresh": true
+ },
+ {
+  "q": "45세 환자 bmi 31 혈압 105 진행 예측",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "age": 45,
+   "bmi": 31,
+   "bp": 105
+  },
+  "fresh": true
+ },
+ {
+  "q": "콜레스테롤 수치가 250인 환자는?",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "s1": 250
+  },
+  "fresh": true
+ },
+ {
+  "q": "혈당 130, 중성지방 5.2일 때 질병 진행 정도",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "s6": 130,
+   "s5": 5.2
+  },
+  "fresh": true
+ },
+ {
+  "q": "60대 환자 혈압 110",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "age": 65,
+   "bp": 110
+  },
+  "fresh": true
+ },
+ {
+  "q": "HDL 35 LDL 150 환자 예상 진행도",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "s3": 35,
+   "s2": 150
+  },
+  "fresh": true
+ },
+ {
+  "q": "진행도가 250이면 혈당은 대략?",
+  "intent": "predict",
+  "target": "s6",
+  "values": {
+   "progression": 250
+  },
+  "fresh": true
+ },
+ {
+  "q": "BMI 20, 25, 30 비교",
+  "intent": "sweep",
+  "target": "progression",
+  "sweep": [
+   "bmi",
+   [
+    20,
+    25,
+    30
+   ]
+  ],
+  "fresh": true
+ },
+ {
+  "q": "혈압별 진행도",
+  "intent": "sweep",
+  "target": "progression",
+  "fresh": true
+ },
+ {
+  "q": "혈압이 10 오르면 진행도는?",
+  "intent": "effect",
+  "target": "progression",
+  "effect": [
+   "bp",
+   10
+  ],
+  "fresh": true
+ },
+ {
+  "q": "콜레스테롤이 높을수록 진행도가 높아?",
+  "intent": "effect",
+  "target": "progression",
+  "effect": [
+   "s1",
+   "+"
+  ],
+  "fresh": true
+ },
+ {
+  "q": "진행도에 가장 큰 영향을 주는 변수",
+  "intent": "importance",
+  "target": "progression",
+  "fresh": true
+ },
+ {
+  "q": "어떤 요소가 당뇨 진행을 결정해?",
+  "intent": "importance",
+  "target": "progression",
+  "fresh": true
+ },
+ {
+  "q": "어느 모델이 가장 정확한가요",
+  "intent": "compare",
+  "fresh": true
+ },
+ {
+  "q": "모델별 오차 비교",
+  "intent": "compare",
+  "fresh": true
+ },
+ {
+  "q": "선형회귀 식만 보여줘",
+  "intent": "equation",
+  "models": [
+   "선형회귀"
+  ],
+  "fresh": true
+ },
+ {
+  "q": "인공신경망 구조 설명",
+  "intent": "equation",
+  "models": [
+   "인공신경망"
+  ],
+  "fresh": true
+ },
+ {
+  "q": "평균 몸무게는?",
+  "intent": "stats",
+  "columns": [
+   "몸무게 (kg)"
+  ],
+  "fresh": true
+ },
+ {
+  "q": "가장 무거운 사람 몇 키로야",
+  "intent": "stats",
+  "columns": [
+   "몸무게 (kg)"
+  ],
+  "fresh": true
+ },
+ {
+  "q": "환자가 총 몇 명이야",
+  "intent": "data",
+  "fresh": true
+ },
+ {
+  "q": "어떻게 쓰는 거야?",
+  "intent": "help",
+  "fresh": true
+ },
+ {
+  "q": "고맙습니다",
+  "intent": "thanks",
+  "fresh": true
+ },
+ {
+  "q": "키가 백칠십이이면 몸무게는?",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 172
+  },
+  "fresh": true
+ },
+ {
+  "q": "키 백팔십이라면 몸무게",
+  "intent": "predict",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 180
+  },
+  "fresh": true
+ },
+ {
+  "q": "결과 차이가 뭐야",
+  "intent": "clarify",
+  "fresh": true
+ },
+ {
+  "_": "── 열 이름·단위·개념어 없는 질문 ──",
+  "q": "175 70",
+  "intent": "check",
+  "dataset": "키·몸무게",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175,
+   "몸무게 (kg)": 70
+  },
+  "fresh": true
+ },
+ {
+  "q": "70 175이면?",
+  "intent": "check",
+  "target": "몸무게 (kg)",
+  "values": {
+   "키 (cm)": 175,
+   "몸무게 (kg)": 70
+  },
+  "fresh": true
+ },
+ {
+  "q": "60",
+  "intent": "predict",
+  "dataset": "키·몸무게",
+  "target": "키 (cm)",
+  "values": {
+   "몸무게 (kg)": 60
+  },
+  "fresh": true
+ },
+ {
+  "q": "30, 110이면?",
+  "intent": "clarify",
+  "dataset": "당뇨병 진행도",
+  "fresh": true
+ },
+ {
+  "q": "3",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "bmi": 30,
+   "bp": 110
+  }
+ },
+ {
+  "q": "4.5",
+  "intent": "clarify",
+  "dataset": "당뇨병 진행도",
+  "fresh": true
+ },
+ {
+  "q": "첫 번째",
+  "intent": "predict",
+  "target": "progression",
+  "values": {
+   "s5": 4.5
+  }
+ },
+ {
+  "q": "1",
+  "intent": "clarify",
+  "fresh": true
+ },
+ {
+  "q": "어때?",
+  "intent": "clarify",
+  "fresh": true
+ },
+ {
+  "q": "두 번째",
+  "intent": "stats"
+ },
+ {
+  "q": "얼마야?",
+  "intent": "need_input",
+  "fresh": true
+ },
+ {
+  "q": "예측해줘",
+  "intent": "need_input",
+  "fresh": true
+ },
+ {
+  "q": "괜찮은 거야?",
+  "intent": "clarify",
+  "fresh": true
+ },
+ {
+  "q": "그래서?",
+  "intent": "clarify",
+  "fresh": true
+ },
+ {
+  "q": "음 글쎄",
+  "intent": "clarify",
+  "fresh": true
+ },
+ {
+  "q": "2번",
+  "intent": "compare"
+ }
+]

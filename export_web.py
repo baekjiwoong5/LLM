@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-웹 챗봇(index.html)에 학습 결과를 넣는 스크립트
+웹 챗봇(index.html)에 학습 결과와 질문 이해 규칙을 넣는 스크립트
 
-  python export_web.py        # data/ 폴더의 모든 데이터를 학습해 index.html 안의 DATA를 갱신
+  python export_web.py        # data/ 폴더의 모든 데이터를 학습해 index.html 안의 DATA와 NLU를 갱신
 
 index.html은 여기서 넣은 계수·가중치만으로 브라우저에서 답하므로 서버가 필요 없습니다.
-data/ 폴더의 데이터를 바꾸거나 추가했다면 이 스크립트를 다시 실행하세요.
+열마다 그 열을 맞히는 모델 묶음을 모두 넣으므로 반대 방향 질문에도 답합니다.
+data/ 폴더의 데이터나 nlu.json의 단어를 바꿨다면 이 스크립트를 다시 실행하세요.
 """
 import json
 import re
@@ -14,6 +15,7 @@ from pathlib import Path
 import numpy as np
 
 from chat import Dataset, default_paths
+from nlu import NLU
 
 ROOT = Path(__file__).resolve().parent
 HTML_PATH = ROOT / "index.html"
@@ -35,39 +37,48 @@ def export_model(name, m, names):
     elif out["kind"] in ("pow", "exp"):
         out.update(a=m.a, b=_list(m.b))
     else:
-        out.update(W=[_list(w, 6) for w in m.W], B=[_list(b.ravel(), 6) for b in m.B],
+        out.update(W=[_list(w, 8) for w in m.W], B=[_list(b.ravel(), 8) for b in m.B],
                    xm=_list(m.xm), xs=_list(m.xs), ym=m.ym, ys=m.ys)
     return out
 
 
 def export_dataset(ds):
-    cols = ds.features + [ds.target]
-    names = [ds.label[c] for c in ds.features]
-    first = ds.features[0]
-    return {
-        "title": ds.title, "file": ds.path.name, "keywords": ds.keywords, "unitWord": ds.unit_word,
-        "n": len(ds.df), "features": ds.features, "target": ds.target,
-        "label": ds.label, "unit": ds.unit, "aliases": [list(a) for a in ds.aliases],
-        "stats": {c: {"mean": float(ds.df[c].mean()), "std": float(ds.df[c].std()),
-                      "min": float(ds.df[c].min()), "max": float(ds.df[c].max())} for c in cols},
-        "fill": ds.fill,
-        "models": [export_model(n, m, names) for n, m in ds.models.items()],
-        "metrics": ds.metrics, "metricOrder": list(ds.metrics), "best": ds.best,
-        "sizes": list(ds.sizes), "skipped": ds.skipped,
-        "example": f"{ds.label[first]} {round(ds.df[first].median()):g}일 때 {ds.label[ds.target]} 예측해줘",
-    }
+    bundles = {}
+    for t in ds.columns:
+        b = ds.bundle(t)
+        names = [ds.label[c] for c in b["features"]]
+        bundles[t] = {"features": b["features"],
+                      "models": [export_model(n, m, names) for n, m in b["models"].items()],
+                      "metrics": b["metrics"], "metricOrder": list(b["metrics"]), "best": b["best"],
+                      "sizes": list(b["sizes"]), "skipped": b["skipped"]}
+    return {"spec": ds.spec, "file": ds.path.name, "n": len(ds.df), "unitWord": ds.unit_word,
+            "dropped": ds.dropped, "nMissing": ds.n_missing, "corr": ds.corr, "cov": ds.cov,
+            "bmiDist": ds.bmi_dist, "bundles": bundles}
+
+
+def _js(obj):
+    return json.dumps(obj, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+
+
+def _put(html, name, payload):
+    block = f"/*{name}_START*/const {name} = {payload};/*{name}_END*/"
+    new, n = re.subn(rf"/\*{name}_START\*/.*?/\*{name}_END\*/", lambda _: block, html, count=1, flags=re.S)
+    if n != 1:
+        raise SystemExit(f"index.html에서 {name} 자리를 찾지 못했습니다")
+    return new
 
 
 def main():
-    data = [export_dataset(Dataset(p)) for p in default_paths()]
-    payload = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    data = []
+    for p in default_paths():
+        ds = Dataset(p)
+        data.append(export_dataset(ds))
+        print(f"  {ds.title}: 열 {len(ds.columns)}개 × 모델 5종 학습")
     html = HTML_PATH.read_text(encoding="utf-8")
-    block = "/*DATA_START*/const DATA = " + payload + ";/*DATA_END*/"
-    new, n = re.subn(r"/\*DATA_START\*/.*?/\*DATA_END\*/", lambda _: block, html, count=1, flags=re.S)
-    if n != 1:
-        raise SystemExit("index.html에서 DATA 자리를 찾지 못했습니다")
-    HTML_PATH.write_text(new, encoding="utf-8")
-    print(f"index.html 갱신: {', '.join(d['title'] for d in data)} ({len(payload) / 1024:.0f} KB)")
+    html = _put(html, "DATA", _js(data))
+    html = _put(html, "NLU", _js({k: v for k, v in NLU.items() if not k.startswith("_")}))
+    HTML_PATH.write_text(html, encoding="utf-8")
+    print(f"index.html 갱신 ({len(html) / 1024:.0f} KB)")
 
 
 if __name__ == "__main__":
